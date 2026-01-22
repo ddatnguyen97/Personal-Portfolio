@@ -1,6 +1,6 @@
 import streamlit as st
 from config import set_config
-from utils import get_base64_image, create_link_button, spacer
+from utils import get_base64_image, create_link_button, create_spacer
 
 def create_about_me_page():
     page_titile = "About Me"
@@ -54,7 +54,7 @@ def create_about_me_page():
                     github_logo
                 )
             
-            spacer(2)
+            create_spacer(2)
             with st.container(
                 horizontal=True,
                 horizontal_alignment="left"
@@ -82,7 +82,7 @@ def create_about_me_page():
                     unsafe_allow_html=True
                 )
             
-            spacer(2)
+            create_spacer(2)
             with st.container(
                 horizontal=True,
                 horizontal_alignment="left"
@@ -110,7 +110,7 @@ def create_about_me_page():
                     unsafe_allow_html=True
                 )
             
-            spacer(2)
+            create_spacer(2)
             with st.container():
                 st.download_button(
                     "Download My Resume",
@@ -130,7 +130,7 @@ def create_about_me_page():
 
             with st.container():
                 st.subheader(
-                    "Background",
+                    "Education",
                     divider="green"
                 )
 
@@ -152,108 +152,110 @@ def create_about_me_page():
                 with st.container():
                     col1, col2, col3 = st.columns(3)
                     
+                    programing_languages = [
+                        "Python",
+                        "SQL"
+                    ]
+
                     with col1:
                         st.write("Programming Languages")
                         with st.container(
                             horizontal=True
                         ):
-                            st.badge(
-                                "Python",
-                                color="green"
-                            )
-                            st.badge(
-                                "SQL",
-                                color="green"
-                            )
+                            for v in programing_languages:
+                                st.badge(
+                                    v,
+                                    color="green"
+                                )
                     
+                    databases = [
+                        "PostgreSQL",
+                        "Google BigQuery"
+                    ]
+
                     with col2:
                         st.write("Data Management & Modeling")
                         with st.container(
                             horizontal=True
                         ):
-                            st.badge(
-                                "PostgreSQL",
-                                color="yellow"
-                            )
-                            st.badge(
-                                "Google BigQuery",
-                                color="yellow"
-                            )
+                            for v in databases:
+                                st.badge(
+                                    v,
+                                    color="yellow"
+                                )
+                            
+                    visualization_tools = [
+                        "Microsoft Power BI",
+                        "Google Looker Studio",
+                        "Tableau",
+                        "Superset",
+                        "Streamlit"
+                    ]
 
                     with col3:
                         st.write("Data Visualization & Reporting")
                         with st.container(
                             horizontal=True
                         ):
-                            st.badge(
-                                "Microsoft Power BI",
-                                color="blue"
-                            )
-                            st.badge(
-                                "Google Looker Studio",
-                                color="blue"
-                            )
-                            st.badge(
-                                "Tableau",
-                                color="blue"
-                            )
-                            st.badge(
-                                "Superset",
-                                color="blue"
-                            )
-                            st.badge(
-                                "Streamlit",
-                                color="blue"
-                            )
+                            for v in visualization_tools:
+                                st.badge(
+                                    v,
+                                    color="blue"
+                                )
 
             with st.container():
                 col1, col2, col3 = st.columns(3)
                 
+                data_analysis_skills = [
+                    "Pandas",
+                    "Exploratory Data Analysis (EDA)",
+                    "Matplotlib",
+                    "Seaborn",
+                ]
+
                 with col1:
                     st.write("Data Analysis")
                     with st.container(
                         horizontal=True
                     ):
-                        st.badge(
-                            "Pandas",
-                            color="red"
-                        )
-                        st.badge(
-                            "Exploratory Data Analysis (EDA)",
-                            color="red"
-                        )
+                        for v in data_analysis_skills:
+                                st.badge(
+                                    v,
+                                    color="red"
+                                )
                 
+                data_engineering_skills = [
+                    "ETL/ELT",
+                    "Data Warehousing",
+                ]
+
                 with col2:
                     st.write("Analytics Engineering")
                     with st.container(
                         horizontal=True
                     ):
-                        st.badge(
-                            "ETL/ELT",
-                            color="violet"
-                        )
-                        st.badge(
-                            "Data Warehousing",
-                            color="violet"
-                        )
+                        for v in data_engineering_skills:
+                            st.badge(
+                                v,
+                                color="violet"
+                            )
+
+                machine_learning_skills = [
+                    "Predictive Modeling (Basics)",
+                    "Time Series Forecasting",
+                    "Natural Language Processing (Basics)",
+                ]
 
                 with col3:
                     st.write("Machine Learning (Foundational)")
                     with st.container(
                         horizontal=True
                     ):
-                        st.badge(
-                            "Predictive Modeling (Basics)",
-                            color="orange"
-                        )
-                        st.badge(
-                            "Time Series Forecasting",
-                            color="orange"
-                        )
-                        st.badge(
-                            "Natural Language Processing (Basics)",
-                            color="orange"
-                        )
+                        for v in machine_learning_skills:
+                            st.badge(
+                                v,
+                                color="orange"
+                            )
     
 if __name__ == "__main__":
     create_about_me_page()
