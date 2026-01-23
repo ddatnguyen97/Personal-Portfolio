@@ -120,7 +120,22 @@ def create_about_me_page():
                 )
 
         with col2:
-            st.header("Hi, I'm Dat Nguyen")
+            st.markdown(
+                f"""
+                <style>
+                .job-title {{
+                    color: #2bb179;
+                }}
+                </style>
+
+                <div class="job-title">
+                    <h2>
+                        Hi, I'm Dat Nguyen
+                    </h2>
+                </div>
+            """,
+                unsafe_allow_html=True
+            )
             with st.container():
                 st.write(
                 """

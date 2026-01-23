@@ -23,8 +23,21 @@ def create_experience_page():
         col1, col2 = st.columns([0.3, 0.7])
 
         with col1:
-            st.subheader(
-                "CRM - Data Analyst"
+            st.markdown(
+                f"""
+                <style>
+                .job-title {{
+                    color: #2bb179;
+                }}
+                </style>
+
+                <div class="job-title">
+                    <h3>
+                        CRM - Data Analyst
+                    </h3>
+                </div>
+            """,
+                unsafe_allow_html=True
             )
             st.markdown(
                 """
@@ -83,8 +96,21 @@ def create_experience_page():
         col1, col2 = st.columns([0.3, 0.7])
 
         with col1:
-            st.subheader(
-                "Data Analyst"
+            st.markdown(
+                f"""
+                <style>
+                .job-title {{
+                    color: #2bb179;
+                }}
+                </style>
+
+                <div class="job-title">
+                    <h3>
+                        Data Analyst
+                    </h3>
+                </div>
+            """,
+                unsafe_allow_html=True
             )
             st.markdown(
                 """
@@ -148,8 +174,21 @@ def create_experience_page():
         col1, col2 = st.columns([0.3, 0.7])
 
         with col1:
-            st.subheader(
-                "Data Analytics Engineer Intern"
+            st.markdown(
+                f"""
+                <style>
+                .job-title {{
+                    color: #2bb179;
+                }}
+                </style>
+
+                <div class="job-title">
+                    <h3>
+                        Data Analytics Engineer Intern
+                    </h3>
+                </div>
+            """,
+                unsafe_allow_html=True
             )
             st.markdown(
                 """
