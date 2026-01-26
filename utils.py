@@ -3,7 +3,7 @@ import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
-
+import random
 
 def get_base64_image(path):
     with open(path, "rb") as f:
@@ -40,94 +40,98 @@ def create_vertical_divider(color="rgba(255,255,255,0.3)", height="auto"):
     )
 
 def create_wordcloud():
-    keywords = {
+    keywords = [
         # Core foundations
-        "SQL": 90,
-        "Python": 90,
-        "Data Analytics": 100,
-        "Data Engineering": 90,
-        "Analytics Engineering": 90,
+        "SQL",
+        "Python",
+        "Data Analytics",
+        "Data Engineering",
+        "Analytics Engineering",
 
         # Data pipeline & processing
-        "ETL": 85,
-        "ELT": 80,
-        "Data Pipelines": 85,
-        "Data Modeling": 80,
-        "Data Transformation": 75,
-        "Data Quality": 70,
-        "Data Validation": 65,
-        "Data Cleaning": 70,
-        "Data Preprocessing": 65,
+        "ETL",
+        "ELT",
+        "Data Pipelines",
+        "Data Modeling",
+        "Data Transformation",
+        "Data Quality",
+        "Data Validation",
+        "Data Cleaning",
+        "Data Preprocessing",
 
         # Analytics & BI
-        "Business Intelligence": 75,
-        "KPI": 65,
-        "Metrics": 60,
-        "Dashboards": 65,
-        "Reporting": 60,
-        "Ad-hoc Analysis": 55,
-        "Exploratory Data Analysis": 55,
-        "EDA": 50,
-        "Insights": 60,
-        "Decision Support": 55,
+        "Business Intelligence",
+        "KPI",
+        "Metrics",
+        "Dashboards",
+        "Reporting",
+        "Ad-hoc Analysis",
+        "Exploratory Data Analysis",
+        "Insights",
+        "Decision Support",
 
         # Databases & modeling
-        "PostgreSQL": 70,
-        "MySQL": 65,
-        "BigQuery": 82,
-        "Data Warehouse": 80,
-        "Data Mart": 65,
-        "Fact Tables": 60,
-        "Dimension Tables": 60,
-        "Star Schema": 65,
+        "PostgreSQL",
+        "MySQL",
+        "BigQuery",
+        "Data Warehouse",
+        "Data Mart",
+        "Fact Tables",
+        "Dimension Tables",
+        "Star Schema",
+        "Snowflake Schema",
 
         # Engineering tools
-        "Airflow": 64,
-        "dbt": 62,
-        "PySpark": 52,
-        "Docker": 50,
-        "Git": 50,
+        "Airflow",
+        "dbt",
+        "PySpark",
+        "Docker",
+        "Git",
 
         # Visualization
-        "Power BI": 86,
-        "Looker Studio": 85,
-        "Tableau": 65,
-        "Apache Superset": 60,
-        "Streamlit": 78,
+        "Power BI",
+        "Looker Studio",
+        "Tableau",
+        "Apache Superset",
+        "Streamlit",
 
         # Cloud & integration
-        "Google Cloud Platform": 70,
-        "GCP": 65,
-        "Cloud Storage": 60,
-        "APIs": 65,
+        "Google Cloud Platform",
+        "Cloud Storage",
+        "APIs",
 
         # Machine learning (supporting role)
-        "Feature Engineering": 60,
-        "Data Preparation": 60,
-        "Model Evaluation": 55,
-        "Prediction": 50,
-        "Time Series": 55
-    }
-    
-    size = 500
-    x, y = np.ogrid[:size, :size]
-    center = (size // 2, size // 2)
-    radius = size // 2 - 10
+        "Feature Engineering",
+        "Data Preparation",
+        "Model Evaluation",
+        "Prediction",
+        "Time Series"
+    ]
 
-    mask = (x - center[0])**2 + (y - center[1])**2 > radius**2
-    mask = 255 * mask.astype(int)
+    freqs = dict(
+        zip(
+            keywords,
+            [random.randint(40, 100) for _ in keywords]
+        )
+    )
+
+    size = 1000 
+    x, y = np.ogrid[:size, :size]
+    center = size // 2
+    radius = size // 2
+
+    mask = (x - center)**2 + (y - center)**2 > radius**2
+    mask = mask.astype(np.uint8) * 255
 
     wordcloud = WordCloud(
-        width=150,
-        height=150,
         mask=mask,
         background_color="#0E1117",
         colormap="rainbow",
         min_font_size=5,
         collocations=False
-    ).generate_from_frequencies(keywords)
+    ).generate_from_frequencies(freqs)
 
-    fig, ax = plt.subplots(figsize=(6, 6))
+    fig, ax = plt.subplots(figsize=(3, 3))
     fig.patch.set_visible(False)
     ax.set_facecolor("none")
 
@@ -137,3 +141,51 @@ def create_wordcloud():
     plt.tight_layout(pad=0)
 
     st.pyplot(fig)
+
+def create_project_card(project_link, title, tools, content=None,):
+    st.markdown(
+        f"""
+        <style>
+        .project-card {{
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+            transition: 0.2s;
+            cursor: pointer;
+            background-color: #141414;
+        }}
+
+        .project-card:hover {{
+            box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }}
+
+        .project-title {{
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #00a99d;
+        }}
+
+        .project-desc {{
+            color: #E4E4E5;
+            margin-bottom: 8px;
+        }}
+
+        .project-tools {{
+            font-size: 15px;
+            color: #1E73CE;
+        }}
+        </style>
+
+        <a href="{project_link}" target="_blank" style="text-decoration:none; color:inherit;">
+            <div class="project-card">
+                <div class="project-title">{title}</div>
+                <div class="project-desc">{content}</div>
+                <div class="project-tools">🛠 {tools}</div>
+            </div>
+        </a>
+        """,
+        unsafe_allow_html=True
+    )

@@ -1,6 +1,5 @@
 import streamlit as st
 from config import set_config
-from utils import get_base64_image, create_link_button, create_spacer, create_vertical_divider
 
 def create_experience_page():
     page_titile = "Experience"

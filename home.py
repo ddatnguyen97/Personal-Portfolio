@@ -8,14 +8,15 @@ def create_home_page():
         title=page_title,
     )
 
-    col1, col2 = st.columns([3, 7])
-    with col1:
+    col1, col2 = st.columns([4, 6])
+    with col2:
         st.header(
         "Welcome to My Portfolio",
+        divider="green"
         )
         st.markdown(
             """
-            Please use the sidebar to navigate through different sections of my portfolio, including:
+            Feel free to explore the different sections of my portfolio using the sidebar, including:
         """
         )
 
@@ -32,7 +33,7 @@ def create_home_page():
                     label=page_name
                 )
     
-    with col2:
+    with col1:
         create_wordcloud()
 
 if __name__ == "__main__":

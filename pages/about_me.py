@@ -114,7 +114,7 @@ def create_about_me_page():
             with st.container():
                 st.download_button(
                     "Download My Resume",
-                    data=open("assets/resume/Nguyen_Hoang_Quoc_Dat_Resume.pdf", "rb").read(),
+                    data=open("assets/resume/Nguyen Hoang Quoc Dat Resume.pdf", "rb").read(),
                     file_name="Nguyen_Hoang_Quoc_Dat_Resume.pdf",
                     type="primary"
                 )
@@ -139,7 +139,7 @@ def create_about_me_page():
             with st.container():
                 st.write(
                 """
-                    I am a Data Analytics Engineer with a background in Management Information Systems (MIS), focused on analytics engineering and data visualization. I work with SQL and Python to build reliable data pipelines, model analytical datasets, and deliver insights through dashboards and analytics applications. In parallel, I am developing foundational machine learning skills to apply predictive models to real-world analytics problems.
+                    With a background in Management Information Systems (MIS), I focus on analytics engineering and data visualization. I work with SQL and Python to build reliable data pipelines, model analytical datasets, and deliver insights through dashboards and analytics applications. In parallel, I am developing foundational machine learning skills to apply predictive models to real-world analytics problems.
                 """
                 )
 
@@ -151,7 +151,7 @@ def create_about_me_page():
 
                 st.markdown(
                     """
-                    #### 2020 – 2024 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Hoa Sen University, Ho Chi Minh City, Vietnam
+                    #### 2020 – 2024 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; Hoa Sen University, Ho Chi Minh City, Vietnam
                     
                     - Bachelor of Management Information Systems (MIS) 
                     
