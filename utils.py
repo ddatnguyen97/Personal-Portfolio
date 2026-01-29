@@ -22,23 +22,9 @@ def create_link_button(link=None, logo=None, event_name=None, social_name=None):
         }}
         </style>
 
-        <a href="{link}" 
-            target="_blank"
-            onclick="
-                event.preventDefault();
-                if (window.op) {{
-                window.op('track', '{event_name}', {{
-                    social_name: '{social_name}',
-                    url: '{link}'
-                }});
-                }}
-                setTimeout(() => {{
-                window.open('{link}', '_blank');
-                }}, 150);
-            "
-        >
-            <img src="data:image/png;base64,{logo}"
-                class="social-icon">
+        <a href="{link}" target="_blank"
+           onclick="event.preventDefault(); if (window.op) {{ window.op('track', '{event_name}', {{ social_name: '{social_name}', url: '{link}' }}); }} setTimeout(function() {{ window.open('{link}', '_blank'); }}, 150);">
+            <img src="data:image/png;base64,{logo}" class="social-icon">
         </a>
         """,
         unsafe_allow_html=True
