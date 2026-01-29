@@ -25,12 +25,18 @@ def create_link_button(link=None, logo=None, event_name=None, social_name=None):
         <a href="{link}" 
             target="_blank"
             onclick="
+                event.preventDefault();
                 if (window.op) {{
                 window.op('track', '{event_name}', {{
                     social_name: '{social_name}',
+                    url: '{link}'
                 }});
-            }}"
-            >
+                }}
+                setTimeout(() => {{
+                window.open('{link}', '_blank');
+                }}, 150);
+            "
+        >
             <img src="data:image/png;base64,{logo}"
                 class="social-icon">
         </a>
@@ -233,13 +239,18 @@ def create_project_card(project_link, title, tools, content=None, event_name=Non
                     target="_blank" 
                     style="text-decoration:none; color:inherit;"
                     onclick="
+                        event.preventDefault();
                         if (window.op) {{
                         window.op('track', '{event_name}', {{
-                            prject_name: '{project_name}',
+                            project_name: '{project_name}',
                             url: '{project_link}'
                         }});
-                    }}"
-                >
+                        }}
+                        setTimeout(() => {{
+                        window.open('{project_link}', '_blank');
+                        }}, 150);
+                "
+            >
             <div class="project-card">
                 <div class="project-title">{title}</div>
                 <div class="project-desc">{content}</div>

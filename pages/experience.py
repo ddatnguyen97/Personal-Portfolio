@@ -1,7 +1,10 @@
 import streamlit as st
 from config import set_config
+from openpanel.event_tracking import track_page
 
 def create_experience_page():
+    track_page("experience")
+
     page_titile = "Experience"
     set_config(
         title=page_titile,

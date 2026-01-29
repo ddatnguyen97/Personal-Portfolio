@@ -1,8 +1,11 @@
 import streamlit as st
 from config import set_config
 from utils import create_project_card
+from openpanel.event_tracking import track_page
 
 def create_projects_page():
+    track_page("personal_projects")
+
     page_title = "Personal Projects"
     set_config(
         title=page_title,

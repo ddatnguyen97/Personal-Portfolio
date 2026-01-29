@@ -2,6 +2,7 @@ import streamlit as st
 from config import set_config
 from utils import create_wordcloud
 from openpanel.setup import load_openpanel
+from openpanel.event_tracking import track_page
 
 import os
 from dotenv import load_dotenv
@@ -9,6 +10,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def create_home_page():
+    track_page("home")
+
     page_title = "Home"
     set_config(
         title=page_title,

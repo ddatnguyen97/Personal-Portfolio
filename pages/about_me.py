@@ -1,8 +1,11 @@
 import streamlit as st
 from config import set_config
 from utils import get_base64_image, create_link_button, create_spacer, create_logo_holder, create_copy_box
+from openpanel.event_tracking import track_event, track_page
 
 def create_about_me_page():
+    track_page("about_me")
+
     page_titile = "About Me"
     set_config(
         title=page_titile,
@@ -84,12 +87,15 @@ def create_about_me_page():
             
             create_spacer(2)
             with st.container():
-                st.download_button(
+                if st.download_button(
                     "Download My Resume",
                     data=open("assets/resume/Nguyen Hoang Quoc Dat Resume.pdf", "rb").read(),
                     file_name="Nguyen_Hoang_Quoc_Dat_Resume.pdf",
-                    type="primary"
-                )
+                ):
+                    track_event(
+                        "download_cv",
+                        {"source": "about_me"}
+                    )
 
         with col2:
             st.markdown(
