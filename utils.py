@@ -36,7 +36,7 @@ def create_link_button(link, logo, social_name):
         <a href="{link}"
            onclick="event.preventDefault(); trackAndGo(
                'click_external_link',
-               {{ social_name: '{social_name}', url: '{link}' }},
+               {{ social_name: '{social_name}' }},
                '{link}'
            );">
             <img src="data:image/png;base64,{logo}" class="social-icon">

@@ -50,14 +50,12 @@ def create_about_me_page():
                 create_link_button(
                     "https://www.linkedin.com/in/dat-nguyen-209938252",
                     linkedin_logo,
-                    event_name="click_external_link",
                     social_name="LinkedIn"
                 )
 
                 create_link_button(
                     "https://github.com/ddatnguyen97",
                     github_logo,
-                    event_name="click_external_link",
                     social_name="GitHub"
                 )
             
