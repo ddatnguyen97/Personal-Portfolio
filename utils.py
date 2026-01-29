@@ -33,7 +33,7 @@ def get_base64_image(path):
 def create_link_button(link, logo, social_name):
     st.markdown(
         f"""
-        <a href="{link}"
+        <a href="#"
            onclick="event.preventDefault(); trackAndGo(
                'click_external_link',
                {{ social_name: '{social_name}' }},
