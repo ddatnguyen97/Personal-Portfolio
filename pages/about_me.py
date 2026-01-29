@@ -68,7 +68,6 @@ def create_about_me_page():
                 
                 create_copy_box(
                     text=gmail,
-                    event_name="copy_gmail"
                 )
             
             with st.container(
@@ -81,7 +80,6 @@ def create_about_me_page():
 
                 create_copy_box(
                     text=whatsapp,
-                    event_name="copy_whatsapp"
                 )
             
             create_spacer(2)
