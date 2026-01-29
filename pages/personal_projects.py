@@ -4,7 +4,9 @@ from utils import create_project_card
 from openpanel.event_tracking import track_page
 
 def create_projects_page():
-    track_page("personal_projects")
+    if "page_tracked" not in st.session_state:
+        track_page("personal_projects")
+        st.session_state.page_tracked = True
 
     page_title = "Personal Projects"
     set_config(

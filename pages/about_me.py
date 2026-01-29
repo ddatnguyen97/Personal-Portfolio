@@ -4,7 +4,9 @@ from utils import get_base64_image, create_link_button, create_spacer, create_lo
 from openpanel.event_tracking import track_event, track_page
 
 def create_about_me_page():
-    track_page("about_me")
+    if "page_tracked" not in st.session_state:
+        track_page("about_me")
+        st.session_state.page_tracked = True
 
     page_titile = "About Me"
     set_config(

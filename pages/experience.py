@@ -3,7 +3,9 @@ from config import set_config
 from openpanel.event_tracking import track_page
 
 def create_experience_page():
-    track_page("experience")
+    if "page_tracked" not in st.session_state:
+        track_page("experience")
+        st.session_state.page_tracked = True
 
     page_titile = "Experience"
     set_config(
