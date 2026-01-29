@@ -1,6 +1,6 @@
 import streamlit as st
 from config import set_config
-from utils import get_base64_image, create_link_button, create_spacer
+from utils import get_base64_image, create_link_button, create_spacer, create_logo_holder, create_copy_box
 
 def create_about_me_page():
     page_titile = "About Me"
@@ -46,68 +46,42 @@ def create_about_me_page():
             ):
                 create_link_button(
                     "https://www.linkedin.com/in/dat-nguyen-209938252",
-                    linkedin_logo
+                    linkedin_logo,
+                    event_name="click_external_link",
+                    social_name="LinkedIn"
                 )
 
                 create_link_button(
                     "https://github.com/ddatnguyen97",
-                    github_logo
+                    github_logo,
+                    event_name="click_external_link",
+                    social_name="GitHub"
                 )
             
-            create_spacer(2)
             with st.container(
                 horizontal=True,
                 horizontal_alignment="left"
             ):
-                create_link_button(
+                create_logo_holder(
                     logo=gmail_logo,
                 )
                 
-                st.markdown(
-                    f"""
-                    <style>
-                    .copy-box {{
-                        padding: 8px 12px;
-                        background-color: #1e1e1e;
-                        border-radius: 6px;
-                        cursor: pointer;
-                        user-select: all;
-                    }}
-                    </style>
-
-                    <div class="copy-box">
-                        {gmail}
-                    </div>
-                    """,
-                    unsafe_allow_html=True
+                create_copy_box(
+                    text=gmail,
+                    event_name="copy_gmail"
                 )
             
-            create_spacer(2)
             with st.container(
                 horizontal=True,
                 horizontal_alignment="left"
             ):
-                create_link_button(
+                create_logo_holder(
                     logo=whatsapp_logo,
                 )
 
-                st.markdown(
-                    f"""
-                    <style>
-                    .copy-box {{
-                        padding: 8px 12px;
-                        background-color: #1e1e1e;
-                        border-radius: 6px;
-                        cursor: pointer;
-                        user-select: all;
-                    }}
-                    </style>
-
-                    <div class="copy-box">
-                        {whatsapp}
-                    </div>
-                    """,
-                    unsafe_allow_html=True
+                create_copy_box(
+                    text=whatsapp,
+                    event_name="copy_whatsapp"
                 )
             
             create_spacer(2)
@@ -151,7 +125,7 @@ def create_about_me_page():
 
                 st.markdown(
                     """
-                    #### 2020 – 2024 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; Hoa Sen University, Ho Chi Minh City, Vietnam
+                    #### 2020 – 2024&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Hoa Sen University, Ho Chi Minh City, Vietnam
                     
                     - Bachelor of Management Information Systems (MIS) 
                     

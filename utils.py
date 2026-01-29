@@ -9,7 +9,9 @@ def get_base64_image(path):
     with open(path, "rb") as f:
         return base64.b64encode(f.read()).decode()
 
-def create_link_button(link=None, logo=None):
+def create_link_button(link=None, logo=None, event_name=None, social_name=None):
+    event_name = event_name or "click_external_link"
+
     st.markdown(
         f"""
         <style>
@@ -20,10 +22,56 @@ def create_link_button(link=None, logo=None):
         }}
         </style>
 
-        <a href="{link}" target="_blank">
+        <a href="{link}" 
+            target="_blank"
+            onclick="
+                if (window.op) {{
+                window.op('track', '{event_name}', {{
+                    social_name: '{social_name}',
+                }});
+            }}"
+            >
             <img src="data:image/png;base64,{logo}"
-                 class="social-icon">
+                class="social-icon">
         </a>
+        """,
+        unsafe_allow_html=True
+    )
+
+def create_logo_holder(logo):
+    st.markdown(
+        f"""
+        <style>
+        .social-icon {{
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+        }}
+        </style>
+
+        <img src="data:image/png;base64,{logo}"
+                class="social-icon">
+        </a>
+        """,
+        unsafe_allow_html=True
+    )
+
+def create_copy_box(text):
+    st.markdown(
+        f"""
+        <style>
+        .copy-box {{
+            padding: 8px 12px;
+            background-color: #1e1e1e;
+            border-radius: 6px;
+            cursor: pointer;
+            user-select: all;
+        }}
+        </style>
+
+        <div class="copy-box">
+            {text}
+        </div>
         """,
         unsafe_allow_html=True
     )
@@ -142,7 +190,9 @@ def create_wordcloud():
 
     st.pyplot(fig)
 
-def create_project_card(project_link, title, tools, content=None,):
+def create_project_card(project_link, title, tools, content=None, event_name=None, project_name=None):
+    event_name = event_name or "view_project"
+
     st.markdown(
         f"""
         <style>
@@ -179,7 +229,17 @@ def create_project_card(project_link, title, tools, content=None,):
         }}
         </style>
 
-        <a href="{project_link}" target="_blank" style="text-decoration:none; color:inherit;">
+        <a href="{project_link}" 
+                    target="_blank" 
+                    style="text-decoration:none; color:inherit;"
+                    onclick="
+                        if (window.op) {{
+                        window.op('track', '{event_name}', {{
+                            prject_name: '{project_name}',
+                            url: '{project_link}'
+                        }});
+                    }}"
+                >
             <div class="project-card">
                 <div class="project-title">{title}</div>
                 <div class="project-desc">{content}</div>

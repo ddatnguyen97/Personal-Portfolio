@@ -29,6 +29,8 @@ def create_projects_page():
                 content=vbp_content,
                 title=vbp_title,
                 tools=vbp_tools,
+                event_name="view_project",
+                project_name="Virtual Online Bookstore Project"
             )
 
         wrp_title = "Weather Report Project"
@@ -48,9 +50,11 @@ def create_projects_page():
                 content=wrp_content,
                 title=wrp_title,
                 tools=wrp_tools,
+                event_name="view_project",
+                project_name="Weather Report Project"
             )
 
-        ubp_title = "User Behavior and Demographics Analytics"
+        ubp_title = "GA4 User Behavior and Demographics Analytics"
         ubp_content = """
             <ul>
                 <li>Performed user behavior and demographic analysis using GA4 event data, with BigQuery serving as the central data warehouse</li>
@@ -67,6 +71,8 @@ def create_projects_page():
             content=ubp_content,
             title=ubp_title,
             tools=ubp_tools,
+            event_name="view_project",
+            project_name="GA4 User Behavior and Demographics Analytics Project"
         )    
 
 if __name__ == "__main__":

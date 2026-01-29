@@ -1,7 +1,7 @@
 import streamlit as st
 from config import set_config
 from utils import create_wordcloud
-from analytics import load_openpanel
+from openpanel.setup import load_openpanel
 
 import os
 from dotenv import load_dotenv
@@ -27,19 +27,22 @@ def create_home_page():
             Feel free to explore the different sections of my portfolio using the sidebar, including:
         """
         )
+        st.markdown("- About me")
+        st.markdown("- Experience")
+        st.markdown("- Personal projects")
 
-        page_links = {
-            "About me": "pages/about_me.py",
-            "Experience": "pages/experience.py",
-            "Personal projects": "pages/personal_projects.py"
-        }
+        # page_links = {
+        #     "About me": "pages/about_me.py",
+        #     "Experience": "pages/experience.py",
+        #     "Personal projects": "pages/personal_projects.py"
+        # }
 
-        with st.container():
-            for page_name, page_path in page_links.items():
-                st.page_link(
-                    page_path,
-                    label=page_name
-                )
+        # with st.container():
+        #     for page_name, page_path in page_links.items():
+        #         st.page_link(
+        #             page_path,
+        #             label=page_name
+        #         )
     
     with col1:
         create_wordcloud()
