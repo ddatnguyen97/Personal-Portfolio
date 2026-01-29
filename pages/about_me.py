@@ -2,8 +2,18 @@ import streamlit as st
 from config import set_config
 from utils import get_base64_image, create_link_button, create_spacer, create_logo_holder, create_copy_box
 from openpanel.event_tracking import track_event, track_page
+from openpanel.setup import load_openpanel
+
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def create_about_me_page():
+    if "op_loaded" not in st.session_state:
+        load_openpanel(os.getenv["OPENPANEL_CLIENT_ID"])
+        st.session_state.op_loaded = True
+
     if "page_tracked" not in st.session_state:
         track_page("about_me")
         st.session_state.page_tracked = True

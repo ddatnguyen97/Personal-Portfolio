@@ -1,8 +1,18 @@
 import streamlit as st
 from config import set_config
 from openpanel.event_tracking import track_page
+from openpanel.setup import load_openpanel
+
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def create_experience_page():
+    if "op_loaded" not in st.session_state:
+        load_openpanel(os.getenv["OPENPANEL_CLIENT_ID"])
+        st.session_state.op_loaded = True
+
     if "page_tracked" not in st.session_state:
         track_page("experience")
         st.session_state.page_tracked = True
