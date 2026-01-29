@@ -1,12 +1,20 @@
 import streamlit as st
 from config import set_config
 from utils import create_wordcloud
+from analytics import load_openpanel
+
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def create_home_page():
     page_title = "Home"
     set_config(
         title=page_title,
     )
+
+    load_openpanel(os.getenv("OPENPANEL_CLIENT_ID"))
 
     col1, col2 = st.columns([4, 6])
     with col2:
