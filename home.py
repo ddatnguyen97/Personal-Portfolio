@@ -11,7 +11,7 @@ load_dotenv()
 
 def create_home_page():
     if "op_loaded" not in st.session_state:
-        load_openpanel(os.getenv["OPENPANEL_CLIENT_ID"])
+        load_openpanel(st.secrets["OPENPANEL_CLIENT_ID"])
         st.session_state.op_loaded = True
 
     if "page_tracked" not in st.session_state:
