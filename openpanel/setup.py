@@ -22,7 +22,7 @@ def load_openpanel(client_id):
 
         window.op('init', {{
             clientId: "{client_id}",
-            trackScreenViews: true,
+            trackScreenViews: false,
             trackOutgoingLinks: true,
             trackAttributes: true,
         }});
