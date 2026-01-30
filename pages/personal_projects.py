@@ -9,9 +9,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-if "tracked_about" not in st.session_state:
+if "tracked_projects" not in st.session_state:
         track_page("Personal Projects")
-        st.session_state.tracked_about = True
+        st.session_state.tracked_projects = True
 
 def create_projects_page():
     page_title = "Personal Projects"

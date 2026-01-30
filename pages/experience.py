@@ -8,9 +8,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-if "tracked_about" not in st.session_state:
+if "tracked_experience" not in st.session_state:
         track_page("Experience")
-        st.session_state.tracked_about = True
+        st.session_state.tracked_experience = True
 
 def create_experience_page():
     page_titile = "Experience"
