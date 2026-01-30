@@ -9,13 +9,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def create_experience_page():
-    if "op_loaded" not in st.session_state:
-        load_openpanel(st.secrets["OPENPANEL_CLIENT_ID"])
-        st.session_state.op_loaded = True
-
-    if "page_tracked" not in st.session_state:
-        track_page("experience")
-        st.session_state.page_tracked = True
+    if "tracked_about" not in st.session_state:
+        track_page("Experience")
+        st.session_state.tracked_about = True
 
     page_titile = "Experience"
     set_config(

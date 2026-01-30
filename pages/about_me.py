@@ -10,13 +10,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def create_about_me_page():
-    if "op_loaded" not in st.session_state:
-        load_openpanel(st.secrets["OPENPANEL_CLIENT_ID"])
-        st.session_state.op_loaded = True
-
-    if "page_tracked" not in st.session_state:
-        track_page("about_me")
-        st.session_state.page_tracked = True
+    if "tracked_about" not in st.session_state:
+        track_page("About Me")
+        st.session_state.tracked_about = True
 
     page_titile = "About Me"
     set_config(

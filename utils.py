@@ -34,11 +34,19 @@ def create_link_button(link, logo, social_name):
     st.markdown(
         f"""
         <a href="#"
-           onclick="event.preventDefault(); trackAndGo(
-               'click_external_link',
-               {{ social_name: '{social_name}' }},
-               '{link}'
-           );">
+           onclick="
+             event.preventDefault();
+             window.op = window.op || function() {{
+               (op.q = op.q || []).push(arguments);
+             }};
+             window.op('track', 'click_external_link', {{
+               social_name: '{social_name}',
+               url: '{link}'
+             }});
+             setTimeout(function() {{
+               window.open('{link}', '_blank');
+             }}, 150);
+           ">
             <img src="data:image/png;base64,{logo}" class="social-icon">
         </a>
         """,
@@ -239,12 +247,20 @@ def create_project_card(project_link, title, tools, content=None, event_name=Non
         <a href="{project_link}" 
                     target="_blank" 
                     style="text-decoration:none; color:inherit;"
-                    onclick="event.preventDefault();
-           trackAndGo(
-                '{event_name}',
-                {{ project_name: '{project_name}', url: '{project_link}' }},
-                '{project_link}'
-            );">
+                    onclick="
+                        event.preventDefault();
+                        window.op = window.op || function() {{
+                        (op.q = op.q || []).push(arguments);
+                        }};
+                        window.op('track', '{event_name}', {{
+                        project_name: '{project_name}',
+                        title: '{title}',
+                        url: '{project_link}'
+                        }});
+                        setTimeout(function() {{
+                        window.open('{project_link}', '_blank');
+                        }}, 150);
+                    ">
             <div class="project-card">
                 <div class="project-title">{title}</div>
                 <div class="project-desc">{content}</div>
