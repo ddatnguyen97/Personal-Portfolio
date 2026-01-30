@@ -223,22 +223,21 @@ def create_project_card(project_link, title, tools, content=None, event_name=Non
         }}
         </style>
 
-        <a href="{project_link}" 
-                    target="_blank" 
-                    style="text-decoration:none; color:inherit;"
-                    onclick="
-                        event.preventDefault();
-                        if (window.op) {{
-                            window.op('track', '{event_name}', {
-                            project_name: '{project_name}',
-                            title: '{title}',
-                            url: '{project_link}'
-                            });
-                        }}
-                        setTimeout(function() {{
-                            window.open('{project_link}', '_blank');
-                        }}, 150);
-                        ">
+        <a href="{project_link}"
+           style="text-decoration:none; color:inherit;"
+           onclick="
+                event.preventDefault();
+                if (window.op) {{
+                    window.op('track', '{event_name}', {{
+                        project_name: '{project_name}',
+                        title: '{title}',
+                        url: '{project_link}'
+                    }});
+                }}
+                setTimeout(function() {{
+                    window.open('{project_link}', '_blank');
+                }}, 150);
+           ">
             <div class="project-card">
                 <div class="project-title">{title}</div>
                 <div class="project-desc">{content}</div>
