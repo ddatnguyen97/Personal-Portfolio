@@ -18,8 +18,6 @@ def track_event(event_name, properties=None):
         height=0
     )
 
-
-
 def track_page(page_name):
     components.html(
         f"""
