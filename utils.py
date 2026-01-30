@@ -1,5 +1,6 @@
 import base64
 import streamlit as st
+import streamlit.components.v1 as components
 import numpy as np
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
@@ -10,25 +11,20 @@ def get_base64_image(path):
         return base64.b64encode(f.read()).decode()
 
 def create_link_button(link, logo, social_name):
-    st.markdown(
+    components.html(
         f"""
-        <a href="#"
+        <a href="{link}"
+           target="_blank"
            onclick="
-            event.preventDefault();
-            if (window.op) {{
-                window.op('track', 'external_link_click', {{
-                    social_name: '{social_name}',
-                    url: '{link}'
-                }});
-            }}
-            setTimeout(function() {{
-                window.open('{link}', '_blank');
-            }}, 150);
+             window.op('track', 'external_link_click', {{
+               social_name: '{social_name}',
+               url: '{link}'
+             }});
            ">
-            <img src="data:image/png;base64,{logo}" class="social-icon">
+          <img src="data:image/png;base64,{logo}" width="36" />
         </a>
         """,
-        unsafe_allow_html=True
+        height=50
     )
 
 def create_logo_holder(logo):
@@ -183,8 +179,41 @@ def create_wordcloud():
 
     st.pyplot(fig)
 
-def create_project_card(project_link, title, tools, content=None, event_name=None, project_name=None):
-    st.markdown(
+# def create_project_card(project_link, title, tools, content, project_name):
+#     components.html(
+#         f"""
+#         <div style="
+#             border:1px solid #e0e0e0;
+#             border-radius:12px;
+#             padding:16px;
+#             margin-bottom:16px;
+#             cursor:pointer;
+#             background:#141414;
+#         "
+#         onclick="
+#             window.op('track', 'view_project', {{
+#               project_name: '{project_name}',
+#               title: '{title}',
+#               url: '{project_link}'
+#             }});
+#             window.open('{project_link}', '_blank');
+#         ">
+#           <div style="color:#00a99d;font-size:18px;font-weight:600">{title}</div>
+#           <div style="color:#E4E4E5">{content}</div>
+#           <div style="color:#1E73CE">🛠 {tools}</div>
+#         </div>
+#         """,
+#         height=160
+#     )
+
+def estimate_height(text, base=180, per_line=22, max_height=420):
+    if not text:
+        return base
+    lines = text.count("\n") + max(1, len(text) // 60)
+    return min(base + lines * per_line, max_height)
+
+def create_project_card(project_link, title, tools, content=None, event_name=None, project_name=None, height=None):
+    components.html(
         f"""
         <style>
         .project-card {{
@@ -242,5 +271,5 @@ def create_project_card(project_link, title, tools, content=None, event_name=Non
             </div>
         </a>
         """,
-        unsafe_allow_html=True
+        # height=height
     )

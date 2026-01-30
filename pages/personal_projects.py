@@ -1,6 +1,6 @@
 import streamlit as st
 from config import set_config
-from utils import create_project_card
+from utils import create_project_card, estimate_height
 from openpanel.event_tracking import track_page
 from openpanel.setup import load_openpanel
 
@@ -13,7 +13,7 @@ def create_projects_page():
     if "tracked_projects" not in st.session_state:
         track_page("Personal Projects")
         st.session_state.tracked_projects = True
-        
+
     page_title = "Personal Projects"
     set_config(
         title=page_title,
@@ -36,6 +36,7 @@ def create_projects_page():
         """
         vbp_tools = "PostgreSQL, SQL, Python, Streamlit"
         vbp_link = "https://github.com/ddatnguyen97/Virtual_Online_Book_Store"
+        vbp_height=estimate_height(vbp_content)
 
         create_project_card(
                 project_link=vbp_link,
@@ -43,7 +44,8 @@ def create_projects_page():
                 title=vbp_title,
                 tools=vbp_tools,
                 event_name=event_name,
-                project_name="Virtual Online Bookstore Project"
+                project_name="Virtual Online Bookstore Project",
+                height=vbp_height
             )
 
         wrp_title = "Weather Report Project"
@@ -57,6 +59,7 @@ def create_projects_page():
         """
         wrp_tools = "BigQuery, SQL, Python, Dash, Plotly, Looker Studio, GA4, GTM"
         wrp_link = "https://github.com/ddatnguyen97/Weather-Dashboard"
+        wrp_height=estimate_height(wrp_content)
 
         create_project_card(
                 project_link=wrp_link,
@@ -64,7 +67,8 @@ def create_projects_page():
                 title=wrp_title,
                 tools=wrp_tools,
                 event_name=event_name,
-                project_name="Weather Report Project"
+                project_name="Weather Report Project",
+                height=wrp_height
             )
 
         ubp_title = "GA4 User Behavior and Demographics Analytics"
@@ -78,6 +82,7 @@ def create_projects_page():
         """
         ubp_tools = "BigQuery, SQL (Custom Queries), Python (Google Colab), Looker Studio"
         ubp_link = "https://github.com/ddatnguyen97/User-Behavior-And-Demographics-Analytics"
+        ubp_height=estimate_height(ubp_content)
 
         create_project_card(
             project_link=ubp_link,
@@ -85,8 +90,9 @@ def create_projects_page():
             title=ubp_title,
             tools=ubp_tools,
             event_name=event_name,
-            project_name="GA4 User Behavior and Demographics Analytics Project"
-        )    
+            project_name="GA4 User Behavior and Demographics Analytics Project",
+            height=ubp_height
+        )
 
 if __name__ == "__main__":
     create_projects_page()
