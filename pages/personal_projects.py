@@ -9,17 +9,17 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-def create_projects_page():
-    load_openpanel(os.getenv("OPENPANEL_CLIENT_ID"))
-
-    if "tracked_about" not in st.session_state:
+if "tracked_about" not in st.session_state:
         track_page("Personal Projects")
         st.session_state.tracked_about = True
 
+def create_projects_page():
     page_title = "Personal Projects"
     set_config(
         title=page_title,
     )
+
+    event_name = "project_view"
 
     st.header(
         "Personal Projects",
@@ -42,7 +42,7 @@ def create_projects_page():
                 content=vbp_content,
                 title=vbp_title,
                 tools=vbp_tools,
-                event_name="view_project",
+                event_name=event_name,
                 project_name="Virtual Online Bookstore Project"
             )
 
@@ -63,7 +63,7 @@ def create_projects_page():
                 content=wrp_content,
                 title=wrp_title,
                 tools=wrp_tools,
-                event_name="view_project",
+                event_name=event_name,
                 project_name="Weather Report Project"
             )
 
@@ -84,7 +84,7 @@ def create_projects_page():
             content=ubp_content,
             title=ubp_title,
             tools=ubp_tools,
-            event_name="view_project",
+            event_name=event_name,
             project_name="GA4 User Behavior and Demographics Analytics Project"
         )    
 

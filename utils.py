@@ -39,7 +39,7 @@ def create_link_button(link, logo, social_name):
              window.op = window.op || function() {{
                (op.q = op.q || []).push(arguments);
              }};
-             window.op('track', 'click_external_link', {{
+             window.op('track', 'external_link_click', {{
                social_name: '{social_name}',
                url: '{link}'
              }});

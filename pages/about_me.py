@@ -9,13 +9,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+if "tracked_about" not in st.session_state:
+    track_page("About Me")
+    st.session_state.tracked_about = True
+
 def create_about_me_page():
-    load_openpanel(os.getenv("OPENPANEL_CLIENT_ID"))
-
-    if "tracked_about" not in st.session_state:
-        track_page("About Me")
-        st.session_state.tracked_about = True
-
     page_titile = "About Me"
     set_config(
         title=page_titile,
@@ -101,7 +99,7 @@ def create_about_me_page():
                     file_name="Nguyen_Hoang_Quoc_Dat_Resume.pdf",
                 ):
                     track_event(
-                        "download_cv",
+                        "cv_download",
                         {"source": "about_me"}
                     )
 

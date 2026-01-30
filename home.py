@@ -9,12 +9,14 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-def create_home_page():
-    load_openpanel(os.getenv("OPENPANEL_CLIENT_ID"))
+load_openpanel(os.getenv("OPENPANEL_CLIENT_ID"))
 
-    if "tracked_home" not in st.session_state:
-        track_page("Home")
-        st.session_state.tracked_home = True
+def create_home_page():
+    # load_openpanel(os.getenv("OPENPANEL_CLIENT_ID"))
+
+    # if "tracked_home" not in st.session_state:
+    #     track_page("Home")
+    #     st.session_state.tracked_home = True
 
     page_title = "Home"
     set_config(
