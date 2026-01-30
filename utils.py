@@ -206,11 +206,11 @@ def create_wordcloud():
 #         height=160
 #     )
 
-def estimate_height(text, base=180, per_line=22, max_height=420):
-    if not text:
-        return base
-    lines = text.count("\n") + max(1, len(text) // 60)
-    return min(base + lines * per_line, max_height)
+# def estimate_height(text, base=180, per_line=22, max_height=420):
+#     if not text:
+#         return base
+#     lines = text.count("\n") + max(1, len(text) // 60)
+#     return min(base + lines * per_line, max_height)
 
 def create_project_card(project_link, title, tools, content=None, event_name=None, project_name=None, height=None):
     components.html(
