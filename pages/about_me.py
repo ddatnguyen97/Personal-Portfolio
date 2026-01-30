@@ -2,7 +2,6 @@ import streamlit as st
 from config import set_config
 from utils import get_base64_image, create_link_button, create_spacer, create_logo_holder, create_copy_box
 from openpanel.event_tracking import track_event, track_page
-from openpanel.setup import load_openpanel
 
 import os
 from dotenv import load_dotenv

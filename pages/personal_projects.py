@@ -1,8 +1,7 @@
 import streamlit as st
 from config import set_config
-from utils import create_project_card, estimate_height
+from utils import create_project_card
 from openpanel.event_tracking import track_page
-from openpanel.setup import load_openpanel
 
 import os
 from dotenv import load_dotenv
