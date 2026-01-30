@@ -10,6 +10,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def create_projects_page():
+    load_openpanel(os.getenv("OPENPANEL_CLIENT_ID"))
+
     if "tracked_about" not in st.session_state:
         track_page("Personal Projects")
         st.session_state.tracked_about = True
