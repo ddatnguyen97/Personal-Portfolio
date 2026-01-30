@@ -7,48 +7,31 @@ load_dotenv()
 
 def track_event(event_name, properties=None):
     props = json.dumps(properties or {})
-
     components.html(
         f"""
         <script>
-          (function() {{
-            window.op = window.op || function () {{
-              (window.op.q = window.op.q || []).push([].slice.call(arguments));
-            }};
-
-            window.op('init', {{
-              clientId: '{os.getenv("OPENPANEL_CLIENT_ID")}'
-            }});
-
+          if (window.op) {{
             window.op('track', '{event_name}', {props});
-          }})();
+          }}
         </script>
-        <script src="https://openpanel.dev/op1.js" async></script>
         """,
         height=0
     )
+
 
 
 def track_page(page_name):
     components.html(
         f"""
         <script>
-          (function() {{
-            window.op = window.op || function () {{
-              (window.op.q = window.op.q || []).push([].slice.call(arguments));
-            }};
-
-            window.op('init', {{
-              clientId: '{os.getenv("OPENPANEL_CLIENT_ID")}'
-            }});
-
+          if (window.op) {{
             window.op('track', 'page_view', {{
               page: '{page_name}'
             }});
-          }})();
+          }}
         </script>
-        <script src="https://openpanel.dev/op1.js" async></script>
         """,
         height=0
     )
+
 
