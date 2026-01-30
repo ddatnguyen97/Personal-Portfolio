@@ -2,10 +2,13 @@ import streamlit.components.v1 as components
 import streamlit as st
 
 def load_openpanel(client_id):
-    st.markdown(
+    components.html(
         f"""
         <script>
           (function() {{
+            if (window.__openpanel_loaded__) return;
+            window.__openpanel_loaded__ = true;
+
             window.op = window.op || function() {{
               (window.op.q = window.op.q || []).push(arguments);
             }};
@@ -16,9 +19,13 @@ def load_openpanel(client_id):
               trackOutgoingLinks: false,
               trackAttributes: true
             }});
+
+            var s = document.createElement('script');
+            s.src = 'https://openpanel.dev/op1.js';
+            s.async = false;
+            document.head.appendChild(s);
           }})();
         </script>
-        <script src="https://openpanel.dev/op1.js" async></script>
         """,
-        unsafe_allow_html=True
+        height=0,
     )
