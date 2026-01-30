@@ -14,17 +14,16 @@ def create_link_button(link, logo, social_name):
         f"""
         <a href="#"
            onclick="
-             event.preventDefault();
-             window.op = window.op || function() {{
-               (op.q = op.q || []).push(arguments);
-             }};
-             window.op('track', 'external_link_click', {{
-               social_name: '{social_name}',
-               url: '{link}'
-             }});
-             setTimeout(function() {{
-               window.open('{link}', '_blank');
-             }}, 150);
+            event.preventDefault();
+            if (window.op) {{
+                window.op('track', 'external_link_click', {{
+                    social_name: '{social_name}',
+                    url: '{link}'
+                }});
+            }}
+            setTimeout(function() {{
+                window.open('{link}', '_blank');
+            }}, 150);
            ">
             <img src="data:image/png;base64,{logo}" class="social-icon">
         </a>
@@ -185,8 +184,6 @@ def create_wordcloud():
     st.pyplot(fig)
 
 def create_project_card(project_link, title, tools, content=None, event_name=None, project_name=None):
-    event_name = event_name or "view_project"
-
     st.markdown(
         f"""
         <style>

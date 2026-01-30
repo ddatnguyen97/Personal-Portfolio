@@ -9,11 +9,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-if "tracked_about" not in st.session_state:
-    track_page("About Me")
-    st.session_state.tracked_about = True
-
 def create_about_me_page():
+    if "tracked_about" not in st.session_state:
+        track_page("About Me")
+        st.session_state.tracked_about = True
+
     page_titile = "About Me"
     set_config(
         title=page_titile,

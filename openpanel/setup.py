@@ -5,13 +5,18 @@ def load_openpanel(client_id):
     st.markdown(
         f"""
         <script>
-          window.op = window.op || [];
-          window.op.push(['init', {{
-            clientId: '{client_id}',
-            trackScreenViews: true,
-            trackOutgoingLinks: true,
-            trackAttributes: true,
-          }}]);
+          (function() {{
+            window.op = window.op || function() {{
+              (window.op.q = window.op.q || []).push(arguments);
+            }};
+
+            window.op('init', {{
+              clientId: '{client_id}',
+              trackScreenViews: false,
+              trackOutgoingLinks: false,
+              trackAttributes: true
+            }});
+          }})();
         </script>
         <script src="https://openpanel.dev/op1.js" async></script>
         """,

@@ -9,11 +9,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-if "tracked_projects" not in st.session_state:
+def create_projects_page():
+    if "tracked_projects" not in st.session_state:
         track_page("Personal Projects")
         st.session_state.tracked_projects = True
-
-def create_projects_page():
+        
     page_title = "Personal Projects"
     set_config(
         title=page_title,
