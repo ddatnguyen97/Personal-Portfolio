@@ -12,8 +12,8 @@ def track_event(event_name, properties=None):
         f"""
         <script>
           (function() {{
-            window.op = window.op || function() {{
-              (window.op.q = window.op.q || []).push(arguments);
+            window.op = window.op || function () {{
+              (window.op.q = window.op.q || []).push([].slice.call(arguments));
             }};
 
             window.op('init', {{
@@ -28,13 +28,14 @@ def track_event(event_name, properties=None):
         height=0
     )
 
+
 def track_page(page_name):
     components.html(
         f"""
         <script>
           (function() {{
-            window.op = window.op || function() {{
-              (window.op.q = window.op.q || []).push(arguments);
+            window.op = window.op || function () {{
+              (window.op.q = window.op.q || []).push([].slice.call(arguments));
             }};
 
             window.op('init', {{
@@ -50,3 +51,4 @@ def track_page(page_name):
         """,
         height=0
     )
+
