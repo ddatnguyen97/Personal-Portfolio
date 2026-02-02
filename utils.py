@@ -80,14 +80,6 @@ def create_copy_box(text):
 def create_spacer(height=None):
     st.markdown(f"<div style='height:{height}px'></div>", unsafe_allow_html=True)
 
-def create_vertical_divider(color="rgba(255,255,255,0.3)", height="auto"):
-    st.markdown(
-        f"""
-        <div style="border-left:2px solid {color}; height:{height};"></div>
-        """,
-        unsafe_allow_html=True
-    )
-
 def create_wordcloud():
     keywords = [
         # Core foundations
