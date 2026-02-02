@@ -11,23 +11,6 @@ def get_base64_image(path):
     with open(path, "rb") as f:
         return base64.b64encode(f.read()).decode()
 
-# def create_link_button(link, logo, social_name):
-#     components.html(
-#         f"""
-#         <a href="{link}"
-#            target="_blank"
-#            onclick="
-#              window.op('track', 'external_link_click', {{
-#                social_name: '{social_name}',
-#                url: '{link}'
-#              }});
-#            ">
-#           <img src="data:image/png;base64,{logo}" width="36" />
-#         </a>
-#         """,
-#         height=50
-#     )
-
 def create_social_links(links):
     icons_html = ""
 
