@@ -1,6 +1,6 @@
 import streamlit as st
 from config import set_config
-from utils import get_base64_image, create_link_button, create_spacer, create_logo_holder, create_copy_box
+from utils import get_base64_image, create_social_links, create_spacer, create_logo_holder, create_copy_box
 from openpanel.event_tracking import track_event, track_page
 
 import os
@@ -54,18 +54,18 @@ def create_about_me_page():
                 horizontal=True,
                 horizontal_alignment="left"
             ):
-                create_link_button(
+                create_social_links([
+                (
                     "https://www.linkedin.com/in/dat-nguyen-209938252",
                     linkedin_logo,
-                    social_name="LinkedIn"
-                )
-
-                create_link_button(
+                    "LinkedIn"
+                ),
+                (
                     "https://github.com/ddatnguyen97",
                     github_logo,
-                    social_name="GitHub"
+                    "GitHub"
                 )
-            
+            ])
             with st.container(
                 horizontal=True,
                 horizontal_alignment="left"

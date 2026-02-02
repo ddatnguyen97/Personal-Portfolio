@@ -11,19 +11,47 @@ def get_base64_image(path):
     with open(path, "rb") as f:
         return base64.b64encode(f.read()).decode()
 
-def create_link_button(link, logo, social_name):
-    components.html(
-        f"""
-        <a href="{link}"
-           target="_blank"
+# def create_link_button(link, logo, social_name):
+#     components.html(
+#         f"""
+#         <a href="{link}"
+#            target="_blank"
+#            onclick="
+#              window.op('track', 'external_link_click', {{
+#                social_name: '{social_name}',
+#                url: '{link}'
+#              }});
+#            ">
+#           <img src="data:image/png;base64,{logo}" width="36" />
+#         </a>
+#         """,
+#         height=50
+#     )
+
+def create_social_links(links):
+    icons_html = ""
+
+    for link, logo, social_name in links:
+        icons_html += f"""
+        <a href="{link}" target="_blank"
+           style="margin-right:12px; display:inline-block;"
            onclick="
-             window.op('track', 'external_link_click', {{
-               social_name: '{social_name}',
-               url: '{link}'
-             }});
+             if (window.op) {{
+               window.op('track', 'external_link_click', {{
+                 social_name: '{social_name}',
+                 url: '{link}'
+               }});
+             }}
            ">
           <img src="data:image/png;base64,{logo}" width="36" />
         </a>
+        """
+
+    components.html(
+        f"""
+        <div style="display:flex; align-items:center;">
+            {icons_html}
+        </div>
         """,
         height=50
     )
