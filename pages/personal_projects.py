@@ -26,71 +26,54 @@ def create_projects_page():
     )
     with st.container():
         vbp_title = "Virtual Online Bookstore Project"
-        vbp_content = """
-            <ul>
-                <li>Built an end-to-end analytics system for an online bookstore by extracting book metadata from the Google Books API and storing it in a structured PostgreSQL database</li>
-                <li>Designed analytical data models and performed data cleaning and transformation using SQL and Python to support reporting use cases</li>
-                <li>Developed an interactive Streamlit dashboard to analyze sales performance, customer behavior, and product trends, enabling data-driven insights for business decision-making</li>
-            </ul>
-        """
+        vbp_content = (
+            "• Built an end-to-end analytics system for an online bookstore by extracting book metadata from the Google Books API and storing it in PostgreSQL\n"
+            "• Designed analytical data models and performed data cleaning and transformations using SQL and Python to support reporting use cases\n"
+            "• Developed an interactive Streamlit dashboard to analyze sales performance, customer behavior, and product trends, enabling data-driven business insights"
+        )
         vbp_tools = "PostgreSQL, SQL, Python, Streamlit"
         vbp_link = "https://github.com/ddatnguyen97/Virtual_Online_Book_Store"
-        # vbp_height=estimate_height(vbp_content)
 
         create_project_card(
                 project_link=vbp_link,
-                content=vbp_content,
-                title=vbp_title,
+                description=vbp_content, 
                 tools=vbp_tools,
-                event_name=event_name,
-                project_name="Virtual Online Bookstore Project",
-                # height=vbp_height
+                title=vbp_title,
             )
 
         wrp_title = "Weather Report Project"
-        wrp_content = """
-            <ul>
-                <li>Designed and deployed a fully automated data pipeline to collect, process, and analyze hourly weather data from the Open-Meteo API</li>
-                <li>Built ETL workflows using Python and SQL to clean and load data into Google BigQuery, with scheduling handled via GitHub Actions and cron jobs</li>
-                <li>Developed an interactive real-time analytics dashboard using Dash and Plotly with direct BigQuery integrations</li>
-                <li>Implemented Google Tag Manager and GA4 to track user interactions, storing event data in BigQuery and visualizing insights through dynamic Looker Studio reports</li>
-            </ul>
-        """
+        wrp_content = (
+            "• Designed and deployed a fully automated data pipeline to collect, process, and analyze hourly weather data from the Open-Meteo API\n"
+            "• Built ETL workflows using Python and SQL to clean and load data into Google BigQuery, with scheduling handled via GitHub Actions and cron jobs\n"
+            "• Developed an interactive real-time analytics dashboard using Dash and Plotly with direct BigQuery integrations\n"
+            "• Implemented Google Tag Manager and GA4 to track user interactions, storing event data in BigQuery and visualizing insights through dynamic Looker Studio reports"
+        )
+
         wrp_tools = "BigQuery, SQL, Python, Dash, Plotly, Looker Studio, GA4, GTM"
         wrp_link = "https://github.com/ddatnguyen97/Weather-Dashboard"
-        # wrp_height=estimate_height(wrp_content)
 
         create_project_card(
                 project_link=wrp_link,
-                content=wrp_content,
-                title=wrp_title,
+                description=wrp_content,
                 tools=wrp_tools,
-                event_name=event_name,
-                project_name="Weather Report Project",
-                # height=wrp_height
+                title=wrp_title,
             )
 
         ubp_title = "GA4 User Behavior and Demographics Analytics"
-        ubp_content = """
-            <ul>
-                <li>Performed user behavior and demographic analysis using GA4 event data, with BigQuery serving as the central data warehouse</li>
-                <li>Conducted Exploratory Data Analysis (EDA) in Python to identify usage patterns, engagement trends, and behavioral segments</li>
-                <li>Developed custom SQL queries to define key metrics such as active users, new users, funnel stages, and weekly cohort retention</li>
-                <li>Built interactive Looker Studio dashboards to visualize engagement across devices, operating systems, geographic regions, and interest categories, supporting data-driven product and marketing insights</li>
-            </ul>
-        """
+        ubp_content = (
+            "• Analyzed user behavior and demographics using GA4 event data with BigQuery as the central data warehouse\n"
+            "• Performed exploratory data analysis (EDA) in Python to uncover usage patterns, engagement trends, and behavioral segments\n"
+            "• Wrote custom SQL queries to define key metrics including active users, new users, funnel stages, and weekly cohort retention\n"
+            "• Built interactive Looker Studio dashboards visualizing engagement by device, OS, geography, and interest categories to support data-driven product and marketing decisions"
+        )
         ubp_tools = "BigQuery, SQL (Custom Queries), Python (Google Colab), Looker Studio"
         ubp_link = "https://github.com/ddatnguyen97/User-Behavior-And-Demographics-Analytics"
-        # ubp_height=estimate_height(ubp_content)
 
         create_project_card(
             project_link=ubp_link,
-            content=ubp_content,
+            description=ubp_content,
+            tools= ubp_tools,
             title=ubp_title,
-            tools=ubp_tools,
-            event_name=event_name,
-            project_name="GA4 User Behavior and Demographics Analytics Project",
-            # height=ubp_height
         )
 
 if __name__ == "__main__":

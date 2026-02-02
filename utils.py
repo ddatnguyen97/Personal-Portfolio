@@ -5,6 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 import random
+from streamlit_card import card
 
 def get_base64_image(path):
     with open(path, "rb") as f:
@@ -179,97 +180,38 @@ def create_wordcloud():
 
     st.pyplot(fig)
 
-# def create_project_card(project_link, title, tools, content, project_name):
-#     components.html(
-#         f"""
-#         <div style="
-#             border:1px solid #e0e0e0;
-#             border-radius:12px;
-#             padding:16px;
-#             margin-bottom:16px;
-#             cursor:pointer;
-#             background:#141414;
-#         "
-#         onclick="
-#             window.op('track', 'view_project', {{
-#               project_name: '{project_name}',
-#               title: '{title}',
-#               url: '{project_link}'
-#             }});
-#             window.open('{project_link}', '_blank');
-#         ">
-#           <div style="color:#00a99d;font-size:18px;font-weight:600">{title}</div>
-#           <div style="color:#E4E4E5">{content}</div>
-#           <div style="color:#1E73CE">🛠 {tools}</div>
-#         </div>
-#         """,
-#         height=160
-#     )
-
-# def estimate_height(text, base=180, per_line=22, max_height=420):
-#     if not text:
-#         return base
-#     lines = text.count("\n") + max(1, len(text) // 60)
-#     return min(base + lines * per_line, max_height)
-
-def create_project_card(project_link, title, tools, content=None, event_name=None, project_name=None, height=None):
-    components.html(
-        f"""
-        <style>
-        .project-card {{
-            border: 1px solid #e0e0e0;
-            border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 16px;
-            transition: 0.2s;
-            cursor: pointer;
-            background-color: #141414;
-        }}
-
-        .project-card:hover {{
-            box-shadow: 0 4px 14px rgba(0,0,0,0.1);
-            transform: translateY(-2px);
-        }}
-
-        .project-title {{
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 6px;
-            color: #00a99d;
-        }}
-
-        .project-desc {{
-            color: #E4E4E5;
-            margin-bottom: 8px;
-        }}
-
-        .project-tools {{
-            font-size: 15px;
-            color: #1E73CE;
-        }}
-        </style>
-
-        <a href="{project_link}"
-           style="text-decoration:none; color:inherit;"
-           onclick="
-                event.preventDefault();
-                if (window.op) {{
-                    window.op('track', '{event_name}', {{
-                        project_name: '{project_name}',
-                        title: '{title}',
-                        url: '{project_link}'
-                    }});
-                }}
-                setTimeout(function() {{
-                    window.open('{project_link}', '_blank');
-                }}, 150);
-           ">
-            <div class="project-card">
-                <div class="project-title">{title}</div>
-                <div class="project-desc">{content}</div>
-                <div class="project-tools">🛠 {tools}</div>
-            </div>
-        </a>
-        """,
-        # height=height
+def create_project_card(project_link, title, description, tools):
+    card(
+        title=title,
+        text=[
+            description,
+            f"🛠 Tools: {tools}"
+        ],
+        url=project_link,
+        styles={
+            "card": {
+                "width": "100%",
+                "background-color": "#141414",
+                "border": "1px solid rgba(255,255,255,0.15)",
+                "border-radius": "16px",
+                "padding": "20px",
+                "box-shadow": "0 8px 24px rgba(0,0,0,0.35)",
+                "margin": "0px",
+            },
+            "title": {
+                "color": "#1E73CE",
+                "font-size": "24px",
+                "font-weight": "600",
+                "margin-bottom": "12px",
+                "text-align": "left",
+            },
+            "text": {
+                "color": "#E6E6E6",
+                "font-size": "16px",
+                "line-height": "1.6",
+                "white-space": "pre-line",
+                "text-align": "left",
+            },
+        }
     )
+
