@@ -1,42 +1,22 @@
 import base64
 import streamlit as st
-import streamlit.components.v1 as components
 import numpy as np
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 import random
 from streamlit_card import card
+from openpanel.event_tracking import track_event
+import uuid
 
 def get_base64_image(path):
     with open(path, "rb") as f:
         return base64.b64encode(f.read()).decode()
 
-def create_social_links(links):
-    icons_html = ""
-
-    for link, logo, social_name in links:
-        icons_html += f"""
-        <a href="{link}" target="_blank"
-           style="margin-right:12px; display:inline-block;"
-           onclick="
-             if (window.op) {{
-               window.op('track', 'external_link_click', {{
-                 social_name: '{social_name}',
-                 url: '{link}'
-               }});
-             }}
-           ">
-          <img src="data:image/png;base64,{logo}" width="36" />
-        </a>
-        """
-
-    components.html(
-        f"""
-        <div style="display:flex; align-items:center;">
-            {icons_html}
-        </div>
-        """,
-        height=50
+def create_social_icon_button(label, url):
+    st.link_button(
+        label=label,
+        url=url,
+        type="primary"
     )
 
 def create_logo_holder(logo):
@@ -75,6 +55,16 @@ def create_copy_box(text):
         </div>
         """,
         unsafe_allow_html=True
+    )
+
+def create_download_button(label, path, file_name):
+    with open(path, "rb") as f:
+        data = f.read()
+    return st.download_button(
+        label=label,
+        data=data,
+        file_name=file_name,
+        type="primary"
     )
 
 def create_spacer(height=None):

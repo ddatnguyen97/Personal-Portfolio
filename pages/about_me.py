@@ -1,6 +1,6 @@
 import streamlit as st
 from config import set_config
-from utils import get_base64_image, create_social_links, create_spacer, create_logo_holder, create_copy_box
+from utils import get_base64_image, create_download_button, create_social_icon_button, create_spacer, create_logo_holder, create_copy_box
 from openpanel.event_tracking import track_event, track_page
 
 import os
@@ -50,22 +50,45 @@ def create_about_me_page():
             )
             st.divider()
             st.text("Connect with me:")
+
+            social_event_name = "external_link_click"
+            source = "about_me"
+            linkedin_label = "LinkedIn"
+            linkedin_url = "https://www.linkedin.com/in/dat-nguyen-209938252"
+
+            github_label = "GitHub"
+            github_url = "https://github.com/ddatnguyen97"
+
             with st.container(
                 horizontal=True,
                 horizontal_alignment="left"
             ):
-                create_social_links([
-                (
-                    "https://www.linkedin.com/in/dat-nguyen-209938252",
-                    linkedin_logo,
-                    "LinkedIn"
-                ),
-                (
+                if create_social_icon_button(
+                    linkedin_label,
+                    linkedin_url,
+                ):
+                    track_event(
+                        social_event_name,
+                        {
+                            "social_name": linkedin_label,
+                            "url": linkedin_url,
+                            "source": source
+                        }
+                    )
+
+                if create_social_icon_button(
+                    "GitHub",
                     "https://github.com/ddatnguyen97",
-                    github_logo,
-                    "GitHub"
-                )
-            ])
+                ):
+                    track_event(
+                        social_event_name,
+                        {
+                            "social_name": github_label,
+                            "url": github_url,
+                            "source": source
+                        }
+                    )
+
             with st.container(
                 horizontal=True,
                 horizontal_alignment="left"
@@ -91,15 +114,19 @@ def create_about_me_page():
                 )
             
             create_spacer(2)
+            label = "Download My Resume"
+            data_path = "assets/resume/Nguyen Hoang Quoc Dat Resume.pdf"
+            file_name = "Nguyen_Hoang_Quoc_Dat_Resume.pdf"
+            download_event_name = "cv_download"
             with st.container():
-                if st.download_button(
-                    "Download My Resume",
-                    data=open("assets/resume/Nguyen Hoang Quoc Dat Resume.pdf", "rb").read(),
-                    file_name="Nguyen_Hoang_Quoc_Dat_Resume.pdf",
+                if create_download_button(
+                    label,
+                    data_path,
+                    file_name,
                 ):
                     track_event(
-                        "cv_download",
-                        {"source": "about_me"}
+                        download_event_name,
+                        {"source": source}
                     )
 
         with col2:
